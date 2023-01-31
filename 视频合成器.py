@@ -4,6 +4,7 @@ import re
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
+import tkinter.ttk as ttk
 
 def load_images():
     global image_folder
@@ -21,19 +22,19 @@ def merge():
     video_files = sorted([f for f in os.listdir(video_folder) if f.endswith('.mov')])
 
     if len(image_files) != len(video_files):
-        messagebox.showerror('糟糕', '图片路径和视频路径出错了喔!')
+        messagebox.showerror('糟糕', '你再确认下图片路径和视频路径!')
         return
 
     print("合成中...")
+    progress_bar["maximum"] = len(image_files)
     for i, (image, video) in enumerate(zip(image_files, video_files)):
-        # 解析文件名编号
-        num = int(re.findall(r'\d+', image)[0])
-        # 构建输出文件名
-        output = f'{os.path.splitext(image)[0][:-3]}-merge.mov'
-        # 调用ffmpeg进行合成
-        cmd = f'ffmpeg -i {os.path.join(video_folder, video)} -i {os.path.join(image_folder, image)} -filter_complex "overlay=x=0:y=0" {os.path.join(video_folder, output)}'
+        #num = int(re.findall(r'\d+', image)[0])  # 解析文件名编号  
+        output = f'{os.path.splitext(image)[0]}-merge.mov'  # 构建输出文件名
+        cmd = f'ffmpeg -i {os.path.join(video_folder, video)} -i {os.path.join(image_folder, image)} -filter_complex "overlay=x=0:y=0" {os.path.join(video_folder, output)}'  # 调用ffmpeg进行合成
         subprocess.run(cmd, shell=True, check=True)
         print(f"{i+1}/{len(image_files)} 完成")
+        progress_bar["value"] = i + 1
+        progress_bar.update()
     print("合成完成")
 
 root = Tk()
@@ -50,5 +51,8 @@ video_load_btn.pack()
 
 merge_btn = Button(root, text="合成", command=merge)
 merge_btn.pack()
+
+progress_bar = ttk.Progressbar(root, orient="horizontal", length=200, mode="determinate")
+progress_bar.pack()
 
 root.mainloop()
