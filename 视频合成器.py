@@ -9,7 +9,7 @@ import tkinter.ttk as ttk
 def load_images():
     global image_folder
     image_folder = filedialog.askdirectory()
-    print("图像文件夹：", image_folder)
+    print("图片文件夹：", image_folder)
 
 def load_videos():
     global video_folder
@@ -38,12 +38,12 @@ def merge():
     print("合成完成")
 
 root = Tk()
-root.title("图像和视频合成")
+root.title("视频封面Kwai合成v0.1版")
 
 image_folder = None
 video_folder = None
 
-image_load_btn = Button(root, text="图像加载", command=load_images)
+image_load_btn = Button(root, text="图片加载", command=load_images)
 image_load_btn.pack()
 
 video_load_btn = Button(root, text="视频加载", command=load_videos)
