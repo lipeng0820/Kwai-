@@ -1,3 +1,5 @@
+# -*- coding: uft-8 -*-
+# 感谢chatGPT同学的大力支持，有问题联系lipeng10.
 import os
 import subprocess
 import re
@@ -53,7 +55,7 @@ def status_led(status_text):
     status_label.config(text= "当前状态：" + str(status_text))
 
 root = Tk()
-root.title("Kwai合成封面小助手V0.0.3")
+root.title("图像和视频合成")
 
 image_folder = None
 video_folder = None
