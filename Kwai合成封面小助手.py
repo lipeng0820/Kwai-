@@ -2,12 +2,11 @@
 # 感谢chatGPT同学的大力支持，有问题联系lipeng10.
 import os
 import subprocess
-import re
 import tkinter as tk
+import tkinter.ttk as ttk
 from tkinter import *
 from tkinter import filedialog
 from tkinter import messagebox
-import tkinter.ttk as ttk
 
 def load_images():
     global image_folder, status_text
@@ -26,6 +25,7 @@ def save_merge_path():
     save_merge_folder = filedialog.askdirectory()
     status_text = "合成结果将存放在 " + str(save_merge_folder)
     status_led(status_text)
+
 
 def video_merge():
     global image_folder, video_folder, status_text
