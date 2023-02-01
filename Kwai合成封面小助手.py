@@ -55,7 +55,7 @@ def status_led(status_text):
     status_label.config(text= "当前状态：" + str(status_text))
 
 root = Tk()
-root.title("图像和视频合成")
+root.title("Kwai合成封面小助手")
 
 image_folder = None
 video_folder = None
