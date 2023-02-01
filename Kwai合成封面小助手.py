@@ -1,4 +1,4 @@
-# -*- coding: uft-8 -*-
+# -*- coding:utf-8 -*-
 # 感谢chatGPT同学的大力支持，有问题联系lipeng10.
 import os
 import subprocess
