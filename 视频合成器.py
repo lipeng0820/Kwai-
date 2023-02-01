@@ -30,7 +30,7 @@ def merge():
     for i, (image, video) in enumerate(zip(image_files, video_files)):
         #num = int(re.findall(r'\d+', image)[0])  # 解析文件名编号  
         output = f'{os.path.splitext(image)[0]}-merge.mov'  # 构建输出文件名
-        cmd = f'ffmpeg -i {os.path.join(video_folder, video)} -i {os.path.join(image_folder, image)} -filter_complex "overlay=x=0:y=0" {os.path.join(video_folder, output)}'  # 调用ffmpeg进行合成
+        cmd = f'ffmpeg -i {os.path.join(video_folder, video)} -i {os.path.join(image_folder, image)} -filter_complex "[0:v][1:v] overlay=0:0:enable='between(t,0,300)'" -pix_fmt yuv420p -c:a copy {os.path.join(video_folder, output)}'  # 调用ffmpeg进行合成
         subprocess.run(cmd, shell=True, check=True)
         print(f"{i+1}/{len(image_files)} 完成")
         progress_bar["value"] = i + 1
