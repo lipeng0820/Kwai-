@@ -32,7 +32,7 @@ def video_merge():
     image_files = sorted([f for f in os.listdir(image_folder) if f.endswith('.png')])
     video_files = sorted([f for f in os.listdir(video_folder) if f.endswith('.mov')])
 
-    if len(image_files) != len(video_files):
+    if len(image_files) != len(video_files) or len(image_files) == 0 or len(video_files) == 0:
         messagebox.showerror('糟糕', '你再确认下图片路径和视频路径!')
         return
 
